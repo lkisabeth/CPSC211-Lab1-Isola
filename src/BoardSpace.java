@@ -1,4 +1,3 @@
-
 public enum BoardSpace
 {
     // This is using an enum.  If you're not sure what that is, ask me about it.

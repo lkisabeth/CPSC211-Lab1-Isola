@@ -1,4 +1,3 @@
-
 public class BoardPosition
 {
     private int row;
