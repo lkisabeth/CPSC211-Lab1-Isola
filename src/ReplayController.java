@@ -12,7 +12,7 @@ public class ReplayController {
         board = new IsolaBoard();
         // Create associated view
         GameView view = new GameView(board);
-        this.currentPlayer = BoardSpace.Player1;
+        currentPlayer = BoardSpace.Player1;
 
         // Create FileHandler
         FileHandler fileHandler = new FileHandler();

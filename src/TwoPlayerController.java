@@ -11,10 +11,10 @@ public class TwoPlayerController {
 
     public void go() {
         // Create board
-        this.board = new IsolaBoard();
+        board = new IsolaBoard();
         // Create a view attached to that board
         GameView view = new GameView(board);
-        this.currentPlayer = BoardSpace.Player1; // maybe refactor
+        currentPlayer = BoardSpace.Player1; // maybe refactor
 
         // Create FileHandler
         FileHandler fileHandler = new FileHandler();
