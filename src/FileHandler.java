@@ -1,10 +1,47 @@
-public class FileHandler {
-    public void saveGame() {
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 
+public class FileHandler {
+    private PrintWriter writer;
+    private Scanner scanner;
+    private File gameFile;
+
+    public void createNewSaveFile() {
+        gameFile = new File("output.dat");
+
+        try {
+            writer = new PrintWriter(gameFile);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not open output.dat");
+        }
     }
 
-    public String loadGame() {
+    public void saveMove(String moveAsDirection) {
+        writer.println(moveAsDirection);
+    }
 
+    public void closeWriter() {
+        writer.close();
+    }
+
+    public void openGameFile() {
+        gameFile = new File("output.dat");
+
+        try {
+            scanner = new Scanner(gameFile);
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not open output.dat");
+        }
+    }
+
+    public String loadNextMove() {
+        return scanner.nextLine();
+    }
+
+    public void closeScanner() {
+        scanner.close();
     }
 
     // refactor to load move entirely

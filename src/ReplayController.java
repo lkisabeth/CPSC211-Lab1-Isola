@@ -1,8 +1,6 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class ReplayController {
+    private IsolaBoard board;
+    private BoardSpace currentPlayer;
 
     public static void main(String[] args) {
         ReplayController controller = new ReplayController();
@@ -10,20 +8,17 @@ public class ReplayController {
     }
 
     public void go() {
-        // Open output.dat
-        File saveGame = new File("output.dat");
-        Scanner scan = null;
-        try {
-            scan = new Scanner(saveGame);
-        } catch (FileNotFoundException e) {
-            System.out.println("Could not open output.dat");
-            return;
-        }
-
         // Create board
-        IsolaBoard board = new IsolaBoard();
+        board = new IsolaBoard();
         // Create associated view
         GameView view = new GameView(board);
+        this.currentPlayer = BoardSpace.Player1;
+
+        // Create FileHandler
+        FileHandler fileHandler = new FileHandler();
+
+        // Open output.dat
+        fileHandler.openGameFile();
 
         // while game is not over
         //      display board
@@ -36,12 +31,15 @@ public class ReplayController {
         while (board.checkWinner() == BoardSpace.Available) {
             view.clearScreen();
             view.displayBoard();
-            BoardSpace currentPlayer = BoardSpace.Player2; // this doesn't feel right
 
-            String moveAsDirection = scan.nextLine();
-            BoardPosition move = this.convertToPosition(moveAsDirection);
+            String moveAsDirection = fileHandler.loadNextMove();
+            BoardPosition move = fileHandler.convertToPosition(moveAsDirection, board, currentPlayer);
             board.movePlayer(currentPlayer, move);
-            currentPlayer = BoardSpace.Player1; // not sure about this
+            if (currentPlayer == BoardSpace.Player1) {
+                currentPlayer = BoardSpace.Player2;
+            } else {
+                currentPlayer = BoardSpace.Player1;
+            }
 
             int seconds = 1;
             try {
@@ -56,17 +54,6 @@ public class ReplayController {
         view.displayBoard();
 
         // Close output.dat
-        scan.close();
-    }
-
-    private BoardPosition convertToPosition(String moveAsDirection) {
-        // Convert the cardinal direction given by the player to a move that can be used by the board.movePlayer method.
-
-        // WIP
-        BoardPosition placeholder = new BoardPosition(1, 1);
-        return placeholder;
-
-        // Having this method in both the TwoPlayerController and the ReplayController is redundant.
-        // Would like to make a 'helper' methods class but unsure of best practices in Java for this.
+        fileHandler.closeScanner();
     }
 }

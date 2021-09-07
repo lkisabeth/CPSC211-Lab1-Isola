@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class TwoPlayerController {
@@ -23,14 +20,7 @@ public class TwoPlayerController {
         FileHandler fileHandler = new FileHandler();
 
         // Create output.dat
-        File saveGame = new File("output.dat");
-        PrintWriter writer;
-        try {
-            writer = new PrintWriter(saveGame);
-        } catch (FileNotFoundException e) {
-            System.out.println("Could not open output.dat");
-            return;
-        }
+        fileHandler.createNewSaveFile();
 
         // while game is not over
         //      display board
@@ -46,7 +36,7 @@ public class TwoPlayerController {
             view.askForMove();
             Scanner scan = new Scanner(System.in);
             String moveAsDirection = scan.nextLine();
-            writer.println(moveAsDirection);
+            fileHandler.saveMove(moveAsDirection);
             BoardPosition move = fileHandler.convertToPosition(moveAsDirection, board, currentPlayer);
             board.movePlayer(currentPlayer, move);
             if (currentPlayer == BoardSpace.Player1) {
@@ -61,6 +51,6 @@ public class TwoPlayerController {
         view.displayBoard();
 
         // close output.dat
-        writer.close();
+        fileHandler.closeWriter();
     }
 }
