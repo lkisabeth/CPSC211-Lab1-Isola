@@ -12,9 +12,10 @@ public class TwoPlayerController {
     public void go() {
         // Create board
         board = new IsolaBoard();
+
         // Create a view attached to that board
         GameView view = new GameView(board);
-        currentPlayer = BoardSpace.Player1; // maybe refactor
+        currentPlayer = BoardSpace.Player1;
 
         // Create FileHandler
         FileHandler fileHandler = new FileHandler();
@@ -23,22 +24,23 @@ public class TwoPlayerController {
         fileHandler.createNewSaveFile();
 
         // while game is not over
-        //      display board
-        //
-        //      ask current player for their move
-        //      write move to output.dat
-        //      make that move on the board
-        //      switch to next player
         while (board.checkWinner() == BoardSpace.Available) {
-            view.clearScreen();
+            // display board
             view.displayBoard();
 
-            view.askForMove();
+            // ask current player for their move
+            view.askForMove(); // refactor to output current player
             Scanner scan = new Scanner(System.in);
             String moveAsDirection = scan.nextLine();
+
+            // write move to output.dat
             fileHandler.saveMove(moveAsDirection);
+
+            // make that move on the board
             BoardPosition move = fileHandler.convertToPosition(moveAsDirection, board, currentPlayer);
             board.movePlayer(currentPlayer, move);
+
+            // switch to the next player
             if (currentPlayer == BoardSpace.Player1) {
                 currentPlayer = BoardSpace.Player2;
             } else {
@@ -47,7 +49,6 @@ public class TwoPlayerController {
         }
 
         // display board
-        view.clearScreen();
         view.displayBoard();
 
         // close output.dat

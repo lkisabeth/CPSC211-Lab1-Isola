@@ -14,18 +14,10 @@ public class GameView {
         for (int i = 0; i < board.getWidth(); i++) {
             for (int j = 0; j < board.getHeight(); j++) {
                 switch (board.get(i, j)) {
-                    case Available:
-                        System.out.print(" - ");
-                        break;
-                    case Player1:
-                        System.out.print(" 1 ");
-                        break;
-                    case Player2:
-                        System.out.print(" 2 ");
-                        break;
-                    case Missing:
-                        System.out.print("   ");
-                        break;
+                    case Available -> System.out.print(" - ");
+                    case Player1 -> System.out.print(" 1 ");
+                    case Player2 -> System.out.print(" 2 ");
+                    case Missing -> System.out.print("   ");
                 }
             }
             System.out.println("");
@@ -43,6 +35,7 @@ public class GameView {
         System.out.print("Type your choice here: ");
     }
 
+    // this isn't working. intention is to clear the terminal so the view appears to update instead of making a long list of outputs in the terminal
     public void clearScreen() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
