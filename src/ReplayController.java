@@ -52,6 +52,9 @@ public class ReplayController {
         // display board
         view.displayBoard();
 
+        // display winner
+        view.displayWinner(currentPlayer);
+
         // Close output.dat
         fileHandler.closeScanner();
     }

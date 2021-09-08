@@ -27,12 +27,20 @@ public class GameView {
 
     }
 
-    public void askForMove() {
+    public void askForMove(BoardSpace currentPlayer) {
+        // Display Current Player
+        System.out.println("** " + currentPlayer.toString() + "'s turn! **");
+        System.out.println("");
+
         // Display prompt for user input
         System.out.println("Please enter your next move.");
         System.out.println("Moves should be represented by the cardinal direction in which you wish to move.");
         System.out.println("Choose from: [ N, NE, E, SE, S, SW, W, NW ]");
         System.out.print("Type your choice here: ");
+    }
+
+    public void displayWinner(BoardSpace currentPlayer) {
+        System.out.println("*** " + currentPlayer.toString() + " Wins! ***");
     }
 
     // this isn't working. intention is to clear the terminal so the view appears to update instead of making a long list of outputs in the terminal

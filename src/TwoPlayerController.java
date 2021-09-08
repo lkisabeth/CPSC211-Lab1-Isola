@@ -29,7 +29,7 @@ public class TwoPlayerController {
             view.displayBoard();
 
             // ask current player for their move
-            view.askForMove(); // refactor to output current player
+            view.askForMove(currentPlayer);
             Scanner scan = new Scanner(System.in);
             String moveAsDirection = scan.nextLine();
 
@@ -50,6 +50,9 @@ public class TwoPlayerController {
 
         // display board
         view.displayBoard();
+
+        // display winner
+        view.displayWinner(currentPlayer);
 
         // close output.dat
         fileHandler.closeWriter();
