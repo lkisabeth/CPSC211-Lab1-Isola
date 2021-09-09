@@ -13,7 +13,7 @@ public class ReplayController {
 
         // Create associated view
         GameView view = new GameView(board);
-        currentPlayer = BoardSpace.Player1; // MAYBE refactor to allow for
+        currentPlayer = BoardSpace.Player1;
 
         // Create FileHandler
         FileHandler fileHandler = new FileHandler();

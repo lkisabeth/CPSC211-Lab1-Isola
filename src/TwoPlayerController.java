@@ -29,7 +29,7 @@ public class TwoPlayerController {
             view.displayBoard();
 
             // ask current player for their move
-            view.askForMove(currentPlayer);
+            view.askForMove(currentPlayer); // this is just output; view isn't handling any input.
             Scanner scan = new Scanner(System.in);
             String moveAsDirection = scan.nextLine();
 

@@ -3,9 +3,7 @@ import java.io.IOException;
 public class GameView {
     private IsolaBoard board;
 
-    public GameView(IsolaBoard board) {
-        this.board = board;
-    }
+    public GameView(IsolaBoard board) { this.board = board; }
 
     public void displayBoard() {
         // Display the board
