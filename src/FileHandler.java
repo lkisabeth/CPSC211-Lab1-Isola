@@ -9,12 +9,12 @@ public class FileHandler {
     private File gameFile;
 
     public void createNewSaveFile() {
-        gameFile = new File("output.dat");
+        gameFile = new File("game.dat");
 
         try {
             writer = new PrintWriter(gameFile);
         } catch (FileNotFoundException e) {
-            System.out.println("Could not open output.dat");
+            System.out.println("Could not open game.dat");
         }
     }
 
@@ -27,12 +27,12 @@ public class FileHandler {
     }
 
     public void openGameFile() {
-        gameFile = new File("output.dat");
+        gameFile = new File("game.dat");
 
         try {
             scanner = new Scanner(gameFile);
         } catch (FileNotFoundException e) {
-            System.out.println("Could not open output.dat");
+            System.out.println("Could not open game.dat");
         }
     }
 

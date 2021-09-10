@@ -18,7 +18,7 @@ public class ReplayController {
         // Create FileHandler
         FileHandler fileHandler = new FileHandler();
 
-        // Open output.dat
+        // Open game.dat
         fileHandler.openGameFile();
 
         // while game is not over
@@ -26,7 +26,7 @@ public class ReplayController {
             // display board
             view.displayBoard();
 
-            // read player move from output.dat
+            // read player move from game.dat
             String moveAsDirection = fileHandler.loadNextMove();
             BoardPosition move = fileHandler.convertToPosition(moveAsDirection, board, currentPlayer);
 
@@ -55,7 +55,7 @@ public class ReplayController {
         // display winner
         view.displayWinner(currentPlayer);
 
-        // Close output.dat
+        // Close game.dat
         fileHandler.closeScanner();
     }
 }

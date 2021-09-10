@@ -20,7 +20,7 @@ public class TwoPlayerController {
         // Create FileHandler
         FileHandler fileHandler = new FileHandler();
 
-        // Create output.dat
+        // Create game.dat
         fileHandler.createNewSaveFile();
 
         // while game is not over
@@ -33,7 +33,7 @@ public class TwoPlayerController {
             Scanner scan = new Scanner(System.in);
             String moveAsDirection = scan.nextLine();
 
-            // write move to output.dat
+            // write move to game.dat
             fileHandler.saveMove(moveAsDirection);
 
             // make that move on the board
@@ -54,7 +54,7 @@ public class TwoPlayerController {
         // display winner
         view.displayWinner(currentPlayer);
 
-        // close output.dat
+        // close game.dat
         fileHandler.closeWriter();
     }
 }
