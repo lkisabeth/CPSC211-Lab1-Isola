@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class TwoPlayerController {
@@ -30,8 +31,19 @@ public class TwoPlayerController {
 
             // ask current player for their move
             view.askForMove(currentPlayer); // this is just output; view isn't handling any input.
+
+            // accept input from player
             Scanner scan = new Scanner(System.in);
-            String moveAsDirection = scan.nextLine();
+            String moveAsDirection = scan.nextLine().toUpperCase();
+
+            // check to see if the move is in the correct format
+            String[] validCardinalInputs = {"N", "NE","E", "SE", "S", "SW", "W", "NW"};
+            while (! Arrays.asList(validCardinalInputs).contains(moveAsDirection)) {
+                view.tryAgain();
+                moveAsDirection = scan.nextLine().toUpperCase();
+            }
+
+            // make sure the move is legal
 
             // write move to game.dat
             fileHandler.saveMove(moveAsDirection);

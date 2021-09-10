@@ -7,7 +7,7 @@ public class GameView {
 
     public void displayBoard() {
         // Display the board
-        System.out.println("");
+        System.out.println();
         System.out.println(" ****** ISOLA ******");
         for (int i = 0; i < board.getWidth(); i++) {
             for (int j = 0; j < board.getHeight(); j++) {
@@ -18,21 +18,28 @@ public class GameView {
                     case Missing -> System.out.print("   ");
                 }
             }
-            System.out.println("");
+            System.out.println();
         }
         System.out.println(" ****** BOARD ******");
-        System.out.println("");
+        System.out.println();
 
     }
 
     public void askForMove(BoardSpace currentPlayer) {
         // Display Current Player
         System.out.println("** " + currentPlayer.toString() + "'s turn! **");
-        System.out.println("");
+        System.out.println();
 
         // Display prompt for user input
         System.out.println("Please enter your next move.");
         System.out.println("Moves should be represented by the cardinal direction in which you wish to move.");
+        System.out.println("Choose from: [ N, NE, E, SE, S, SW, W, NW ]");
+        System.out.print("Type your choice here: ");
+    }
+
+    public void tryAgain() {
+        System.out.println();
+        System.out.println("The move you entered wasn't in the correct form. Please try again.");
         System.out.println("Choose from: [ N, NE, E, SE, S, SW, W, NW ]");
         System.out.print("Type your choice here: ");
     }
