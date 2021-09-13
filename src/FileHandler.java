@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class FileHandler {
     private PrintWriter writer;
@@ -30,7 +31,7 @@ public class FileHandler {
         writer.close();
     }
 
-    public void openGameFile() {
+    public void openSaveFile() {
         gameFile = new File("game.dat");
 
         try {

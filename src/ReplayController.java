@@ -19,7 +19,7 @@ public class ReplayController {
         FileHandler fileHandler = new FileHandler();
 
         // Open game.dat
-        fileHandler.openGameFile();
+        fileHandler.openSaveFile();
 
         // while game is not over
         while (board.checkWinner() == BoardSpace.Available) {
