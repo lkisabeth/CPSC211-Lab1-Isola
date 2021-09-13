@@ -18,6 +18,10 @@ public class FileHandler {
         }
     }
 
+    public File getGameFile() {
+        return gameFile;
+    }
+
     public void saveMove(String moveAsCardinal) {
         writer.println(moveAsCardinal);
     }
