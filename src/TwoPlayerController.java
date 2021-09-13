@@ -37,13 +37,7 @@ public class TwoPlayerController {
             String moveAsCardinal = scan.nextLine().toUpperCase();
 
             // check to see if the move is in the correct format
-            String[] validCardinalInputs = {"N", "NE","E", "SE", "S", "SW", "W", "NW"};
-            while (! Arrays.asList(validCardinalInputs).contains(moveAsCardinal)) {
-                view.tryAgain();
-                moveAsCardinal = scan.nextLine().toUpperCase();
-            }
-
-            // make sure the move is legal
+            moveAsCardinal = this.checkMoveFormat(moveAsCardinal, view, scan);
 
             // write move to game.dat
             fileHandler.saveMove(moveAsCardinal);
@@ -53,11 +47,7 @@ public class TwoPlayerController {
             board.movePlayer(currentPlayer, move);
 
             // switch to the next player
-            if (currentPlayer == BoardSpace.Player1) {
-                currentPlayer = BoardSpace.Player2;
-            } else {
-                currentPlayer = BoardSpace.Player1;
-            }
+            switchPlayer();
         }
 
         // display board
@@ -67,5 +57,22 @@ public class TwoPlayerController {
 
         // close game.dat
         fileHandler.closeWriter();
+    }
+
+    private String checkMoveFormat(String moveAsCardinal, GameView view, Scanner scan) {
+        String[] validCardinalInputs = {"N", "NE","E", "SE", "S", "SW", "W", "NW"};
+        while (! Arrays.asList(validCardinalInputs).contains(moveAsCardinal)) {
+            view.tryAgain();
+            moveAsCardinal = scan.nextLine().toUpperCase();
+        }
+        return moveAsCardinal;
+    }
+
+    private void switchPlayer() {
+        if (currentPlayer == BoardSpace.Player1) {
+            currentPlayer = BoardSpace.Player2;
+        } else {
+            currentPlayer = BoardSpace.Player1;
+        }
     }
 }

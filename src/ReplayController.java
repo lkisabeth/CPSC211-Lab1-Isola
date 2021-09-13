@@ -34,11 +34,7 @@ public class ReplayController {
             board.movePlayer(currentPlayer, move);
 
             //switch to next player
-            if (currentPlayer == BoardSpace.Player1) {
-                currentPlayer = BoardSpace.Player2;
-            } else {
-                currentPlayer = BoardSpace.Player1;
-            }
+            switchPlayer();
 
             // delay for 1 second
             int seconds = 1;
@@ -57,5 +53,13 @@ public class ReplayController {
 
         // Close game.dat
         fileHandler.closeScanner();
+    }
+
+    private void switchPlayer() {
+        if (currentPlayer == BoardSpace.Player1) {
+            currentPlayer = BoardSpace.Player2;
+        } else {
+            currentPlayer = BoardSpace.Player1;
+        }
     }
 }
