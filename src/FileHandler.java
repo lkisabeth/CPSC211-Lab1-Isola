@@ -18,8 +18,8 @@ public class FileHandler {
         }
     }
 
-    public void saveMove(String moveAsDirection) {
-        writer.println(moveAsDirection);
+    public void saveMove(String moveAsCardinal) {
+        writer.println(moveAsCardinal);
     }
 
     public void closeWriter() {

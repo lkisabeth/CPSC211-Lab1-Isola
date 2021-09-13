@@ -13,16 +13,16 @@ public class TwoPlayerController {
     public void go() {
         // Create board
         board = new IsolaBoard();
-
-        // Create a view attached to that board
+        // Create a view attached to the board
         GameView view = new GameView(board);
-        currentPlayer = BoardSpace.Player1;
 
         // Create FileHandler
         FileHandler fileHandler = new FileHandler();
-
         // Create game.dat
         fileHandler.createNewSaveFile();
+
+        // Set currentPlayer to Player 1 at start of new game
+        currentPlayer = BoardSpace.Player1;
 
         // while game is not over
         while (board.checkWinner() == BoardSpace.Available) {
@@ -34,22 +34,22 @@ public class TwoPlayerController {
 
             // accept input from player
             Scanner scan = new Scanner(System.in);
-            String moveAsDirection = scan.nextLine().toUpperCase();
+            String moveAsCardinal = scan.nextLine().toUpperCase();
 
             // check to see if the move is in the correct format
             String[] validCardinalInputs = {"N", "NE","E", "SE", "S", "SW", "W", "NW"};
-            while (! Arrays.asList(validCardinalInputs).contains(moveAsDirection)) {
+            while (! Arrays.asList(validCardinalInputs).contains(moveAsCardinal)) {
                 view.tryAgain();
-                moveAsDirection = scan.nextLine().toUpperCase();
+                moveAsCardinal = scan.nextLine().toUpperCase();
             }
 
             // make sure the move is legal
 
             // write move to game.dat
-            fileHandler.saveMove(moveAsDirection);
+            fileHandler.saveMove(moveAsCardinal);
 
             // make that move on the board
-            BoardPosition move = fileHandler.convertToPosition(moveAsDirection, board, currentPlayer);
+            BoardPosition move = fileHandler.convertToPosition(moveAsCardinal, board, currentPlayer);
             board.movePlayer(currentPlayer, move);
 
             // switch to the next player
@@ -62,7 +62,6 @@ public class TwoPlayerController {
 
         // display board
         view.displayBoard();
-
         // display winner
         view.displayWinner(currentPlayer);
 
